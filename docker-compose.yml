@@ -1,0 +1,97 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./myproject
+    ports:
+      - "8005:8000"
+    volumes:
+      - ./myproject:/app
+    depends_on:
+      - db
+    environment:
+      - SYMBOLS=TCS.NS,SBIN.NS,RELIANCE.NS,BHARTIARTL.NS,LT.NS,INFY.NS,HDFCBANK.NS,WIPRO.NS,AAPL,MSFT
+      - DEBUG=1
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=first_database
+      - DB_USER=postgres_user
+      - DB_PASSWORD=1234
+    networks:
+      - stock-network
+
+  frontend:
+    build:
+      context: ./my-app
+    ports:
+      - "3005:3000"
+    volumes:
+      - ./my-app:/app
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8005
+    networks:
+      - stock-network
+
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=first_database
+      - POSTGRES_USER=postgres_user
+      - POSTGRES_PASSWORD=1234
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - stock-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres_user -d first_database"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 5s
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9001:9090"  # Expose Prometheus on port 9001
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - stock-network
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3002:3000"  
+    depends_on:
+      - prometheus
+    volumes:
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini
+    networks:
+      - stock-network
+
+  metrics_collector:
+    build:
+      context: ./metrics_collector
+    ports:
+      - "7878:7878"
+    environment:
+      - DEBUG=1
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=first_database
+      - DB_USER=postgres_user
+      - DB_PASSWORD=1234
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - stock-network
+
+volumes:
+  postgres_data:
+
+networks:
+  stock-network:
+    driver: bridge
+

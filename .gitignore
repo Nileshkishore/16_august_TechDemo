@@ -1,0 +1,79 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+dist/
+build/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+*.env
+*.venv
+*.virtualenv
+*.tox
+*.nox
+*.coverage
+*.pytest_cache
+*.mypy_cache
+*.DMG
+*.egg-info/
+venv/
+ENV/
+env/
+.venv/
+
+# Django
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+media/
+static/
+staticfiles/
+*.env
+*.local
+*.pkl
+*.pickle
+*.csv
+
+# Next.js
+.next/
+out/
+public/static/
+*.log
+
+# IDEs and editors
+.vscode/
+.idea/
+*.suo
+*.ntvs_analysis.dat
+*.njsproj
+*.sln
+*.swp
+*~
+.project
+.settings/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Miscellaneous
+*.orig
+*.bak
+*.tmp
+*.swp
+*.swo
+
+

@@ -1,0 +1,38 @@
+# Python cache
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+# Django migrations
+myapi/migrations
+users/migrations
+
+# Database file
+db.sqlite3
+
+# Tests
+*.test.py
+ingest_test.py
+
+# Local environment files
+.env
+.env.local
+
+# Version control
+.git
+.gitignore
+
+# Docker files
+Dockerfile
+.dockerignore
+
+# Node modules (if using Node.js for some reason)
+node_modules
+
+# Other files that are not needed in the Docker image
+*.md
+*.rst
+*.log
+*.cache
+*.gitkeep
