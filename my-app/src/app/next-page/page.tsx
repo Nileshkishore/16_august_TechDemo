@@ -121,7 +121,7 @@ const LineChartComponent = ({ data }: { data: StockData[] }) => {
         borderWidth: 2,
         pointRadius: 5,
         pointHoverRadius: 7,
-        type: 'line',
+        type: 'line' as const ,
       },
       {
         label: '1 Week Change',
@@ -131,7 +131,7 @@ const LineChartComponent = ({ data }: { data: StockData[] }) => {
         borderWidth: 2,
         pointRadius: 5,
         pointHoverRadius: 7,
-        type: 'line',
+        type: 'line' as const, 
       },
       {
         label: '1 Month Change',
@@ -141,7 +141,7 @@ const LineChartComponent = ({ data }: { data: StockData[] }) => {
         borderWidth: 2,
         pointRadius: 5,
         pointHoverRadius: 7,
-        type: 'line',
+        type: 'line' as const, 
       },
       {
         label: '1 Year Change',
@@ -151,7 +151,7 @@ const LineChartComponent = ({ data }: { data: StockData[] }) => {
         borderWidth: 2,
         pointRadius: 5,
         pointHoverRadius: 7,
-        type: 'line',
+        type: 'line' as const, 
       },
     ],
   };

@@ -1,39 +1,21 @@
-# Base image for building the application
-FROM node:18-bullseye AS builder
+# Base image
+FROM node:18.17.0-alpine
 
-# Set the working directory
+# Set work directory
 WORKDIR /app
 
-# Copy package files and install dependencies
-COPY package.json package-lock.json ./
-RUN npm install --production
+# Install dependencies
+COPY package.json package-lock.json /app/
+RUN npm install
 
-# Copy the rest of the application code
-COPY . .
+# Copy project files
+COPY . /app/
 
-# Build the application (uncomment if you need to build)
-# RUN npm run build
-
-# Expose the port (for development)
-EXPOSE 3000
-
-# Base image for running the application
-FROM node:18-bullseye-slim AS runtime
-
-# Set the working directory
-WORKDIR /app
-
-# Copy only the necessary files from the builder stage
-#COPY --from=builder /app/package.json /app/package-lock.json /app/
-#COPY --from=builder /app/node_modules /app/node_modules
-#COPY --from=builder /app/public /app/public
-
-# Only copy the necessary build artifacts if needed
-# COPY --from=builder /app/.next /app/.next
+# Build the application
+RUN npm run build
 
 # Expose the port
 EXPOSE 3000
 
-# Run the application in development mode
+# Run the application
 CMD ["npm", "run", "dev"]
-

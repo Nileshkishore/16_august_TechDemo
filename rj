@@ -1,0 +1,28 @@
+CONTAINER ID   IMAGE                       COMMAND                  CREATED          STATUS          PORTS     NAMES
+cca8d38eec4c   90cb45a9677a                "python export-metri…"   13 minutes ago   Up 13 minutes             k8s_metrics-collector_metrics-collector-78589d45bb-fm2dt_stock_92f85b2e-4c07-4af5-9db2-e8998ea24e12_0
+e7c7a179905f   registry.k8s.io/pause:3.9   "/pause"                 13 minutes ago   Up 13 minutes             k8s_POD_metrics-collector-78589d45bb-fm2dt_stock_92f85b2e-4c07-4af5-9db2-e8998ea24e12_0
+9821b8c52395   bea4fc35afb3                "sh -c 'python manag…"   16 minutes ago   Up 16 minutes             k8s_backend_backend-bdfd6d7c4-pn7w2_stock_24035de5-afcb-4292-9730-b0694f9f2782_0
+703243b28ec8   registry.k8s.io/pause:3.9   "/pause"                 16 minutes ago   Up 16 minutes             k8s_POD_backend-bdfd6d7c4-pn7w2_stock_24035de5-afcb-4292-9730-b0694f9f2782_0
+460188d1e5f9   prom/prometheus             "/bin/prometheus --c…"   21 minutes ago   Up 21 minutes             k8s_prometheus_prometheus-59c845c4c7-crvp5_stock_2dfd4a78-11db-4757-a0dc-8bd1d1fe65c6_0
+c264b18f8484   8434335a9e46                "docker-entrypoint.s…"   21 minutes ago   Up 21 minutes             k8s_db_db-597c6b87cb-ptjnw_stock_a29e3eee-b9fc-4234-87b4-0bb495c76bfa_0
+1d0cc2bf6bc9   registry.k8s.io/pause:3.9   "/pause"                 21 minutes ago   Up 21 minutes             k8s_POD_db-597c6b87cb-ptjnw_stock_a29e3eee-b9fc-4234-87b4-0bb495c76bfa_0
+ceeab9a34803   registry.k8s.io/pause:3.9   "/pause"                 21 minutes ago   Up 21 minutes             k8s_POD_prometheus-59c845c4c7-crvp5_stock_2dfd4a78-11db-4757-a0dc-8bd1d1fe65c6_0
+aa6d08fabe5f   registry.k8s.io/pause:3.9   "/pause"                 21 minutes ago   Up 21 minutes             k8s_POD_frontend-665447c9fd-g5dp7_stock_3d9a7926-ca21-4f72-8f23-261bfab080e7_0
+254f30013b07   6e38f40d628d                "/storage-provisioner"   34 minutes ago   Up 34 minutes             k8s_storage-provisioner_storage-provisioner_kube-system_6a2d7657-9bd5-4954-8126-2b156bd27c5f_3
+69631522921f   grafana/grafana             "/run.sh"                35 minutes ago   Up 35 minutes             k8s_grafana_grafana-798d68959d-xcjwt_stock_a4fa90d1-4b8b-4873-9dec-e20e63953568_1
+66bfae0f0452   cbb01a7bd410                "/coredns -conf /etc…"   35 minutes ago   Up 35 minutes             k8s_coredns_coredns-7db6d8ff4d-4fp6x_kube-system_a5cf83f1-9afe-4699-ac75-11d46aab2f58_1
+9a19f0bfb986   cbb01a7bd410                "/coredns -conf /etc…"   35 minutes ago   Up 35 minutes             k8s_coredns_coredns-7db6d8ff4d-jp4vr_kube-system_65313bed-63fd-4cd9-964d-9f8ad56a0143_1
+a0612b8b27c4   a0bf559e280c                "/usr/local/bin/kube…"   35 minutes ago   Up 35 minutes             k8s_kube-proxy_kube-proxy-vvtnc_kube-system_01fb7b0b-5f07-4eb3-bfa3-58f921a488fa_1
+36b0be026496   registry.k8s.io/pause:3.9   "/pause"                 35 minutes ago   Up 35 minutes             k8s_POD_coredns-7db6d8ff4d-4fp6x_kube-system_a5cf83f1-9afe-4699-ac75-11d46aab2f58_1
+67b3437d5cac   registry.k8s.io/pause:3.9   "/pause"                 35 minutes ago   Up 35 minutes             k8s_POD_coredns-7db6d8ff4d-jp4vr_kube-system_65313bed-63fd-4cd9-964d-9f8ad56a0143_1
+21335ab5654a   registry.k8s.io/pause:3.9   "/pause"                 35 minutes ago   Up 35 minutes             k8s_POD_grafana-798d68959d-xcjwt_stock_a4fa90d1-4b8b-4873-9dec-e20e63953568_1
+a021bab3521e   registry.k8s.io/pause:3.9   "/pause"                 35 minutes ago   Up 35 minutes             k8s_POD_kube-proxy-vvtnc_kube-system_01fb7b0b-5f07-4eb3-bfa3-58f921a488fa_1
+855b41bf2ba7   registry.k8s.io/pause:3.9   "/pause"                 35 minutes ago   Up 35 minutes             k8s_POD_storage-provisioner_kube-system_6a2d7657-9bd5-4954-8126-2b156bd27c5f_1
+606cacee889a   c7aad43836fa                "kube-controller-man…"   35 minutes ago   Up 35 minutes             k8s_kube-controller-manager_kube-controller-manager-minikube_kube-system_7fd44e8d11c3e0ffe6b1825e2a1f2270_1
+ab138249a2df   3861cfcd7c04                "etcd --advertise-cl…"   35 minutes ago   Up 35 minutes             k8s_etcd_etcd-minikube_kube-system_49de04197266084a2fd4c88a56c63da7_1
+f679be658716   c42f13656d0b                "kube-apiserver --ad…"   35 minutes ago   Up 35 minutes             k8s_kube-apiserver_kube-apiserver-minikube_kube-system_3bcb3a373f1da5f7af51088428d5d964_1
+0ed2d44fc95f   259c8277fcbb                "kube-scheduler --au…"   35 minutes ago   Up 35 minutes             k8s_kube-scheduler_kube-scheduler-minikube_kube-system_f9c8e1d0d74b1727abdb4b4a31d3a7c1_1
+7ec68f2951c0   registry.k8s.io/pause:3.9   "/pause"                 35 minutes ago   Up 35 minutes             k8s_POD_kube-scheduler-minikube_kube-system_f9c8e1d0d74b1727abdb4b4a31d3a7c1_1
+5fcd707afb06   registry.k8s.io/pause:3.9   "/pause"                 35 minutes ago   Up 35 minutes             k8s_POD_kube-apiserver-minikube_kube-system_3bcb3a373f1da5f7af51088428d5d964_1
+b1201f140f69   registry.k8s.io/pause:3.9   "/pause"                 35 minutes ago   Up 35 minutes             k8s_POD_etcd-minikube_kube-system_49de04197266084a2fd4c88a56c63da7_1
+e6361c03c392   registry.k8s.io/pause:3.9   "/pause"                 35 minutes ago   Up 35 minutes             k8s_POD_kube-controller-manager-minikube_kube-system_7fd44e8d11c3e0ffe6b1825e2a1f2270_1

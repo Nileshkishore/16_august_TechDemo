@@ -1,0 +1,93 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: grafana-data
+  namespace: stock
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi  # i have to reduce it
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  namespace: stock
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      containers:
+      - name: grafana
+        image: grafana/grafana:latest
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - name: grafana-config
+          mountPath: /etc/grafana
+          readOnly: true
+        - name: grafana-data
+          mountPath: /var/lib/grafana
+        env:
+        - name: SMTP_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: grafana-smtp-secret
+              key: smtp-password
+      volumes:
+      - name: grafana-config
+        configMap:
+          name: grafana-config
+      - name: grafana-data
+        persistentVolumeClaim:
+          claimName: grafana-data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+  namespace: stock
+spec:
+  type: NodePort
+  ports:
+  - port: 3000
+    targetPort: 3000
+    nodePort: 30002  
+  selector:
+    app: grafana
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-config
+  namespace: stock
+data:
+  grafana.ini: |
+    [smtp]
+    enabled = true
+    host = smtp.gmail.com:587
+    user = nilesh.k@sigmoidanalytics.com
+    password = nglalskcmnbgpbni  # I have to see this
+    skip_verify = true
+    from_address = nilesh.k@sigmoidanalytics.com
+    from_name = Grafana
+    ehlo_identity = grafana.example.com
+    
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: grafana-smtp-secret
+  namespace: stock
+type: Opaque
+data:
+  smtp-password: bmdzYWxza2NtbmJncGJuaQ== 
+
